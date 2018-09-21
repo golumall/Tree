@@ -1,0 +1,52 @@
+class Node
+{
+    int data;
+    Node left,right;
+    Node(int data)
+    {
+        this.data=data;
+        left=right=null;
+    }
+}
+class MirrorOfBt
+{
+    Node root;
+    void mirror(Node root)
+    {
+      root=  mirrorTree(root);
+    }
+    Node mirrorTree(Node root)
+    {
+        if(root==null)
+         return root;
+        Node lefttree=mirrorTree(root.left);
+        Node righttree=mirrorTree(root.right);
+        root.left=righttree;
+        root.right=lefttree;
+        return root;
+    }
+    void inOrder(Node root)
+    {
+        if(root==null)
+        return;
+        inOrder(root.left);
+        System.out.print(root.data+" ");
+        inOrder(root.right);
+    }
+    public static void main (String[] args) {
+       MirrorOfBt tree=new MirrorOfBt();
+       tree.root=new Node(1);
+        tree.root.left=new Node(2);
+        tree.root.right=new Node(3);
+        tree.root.left.left=new Node(4);
+        tree.root.left.right=new Node(5);
+        
+        System.out.println("Original Tree");
+        tree.inOrder(tree.root);
+        tree.mirror(tree.root);
+        System.out.println();
+        System.out.println("Mirror Tree");
+        
+        tree.inOrder(tree.root);
+    }
+}
