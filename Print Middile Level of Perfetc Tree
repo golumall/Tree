@@ -1,0 +1,40 @@
+/*package whatever //do not write package name here */
+
+import java.io.*;
+class Node
+{
+    int data;
+    Node left,right;
+    Node(int data)
+    {
+        this.data=data;
+        left=right=null;
+    }
+}
+class Print_Middle_Level_PerfectBT {
+    Node root;
+    void printMid(Node a,Node b)
+    {
+        if(a==null||b==null)
+         return;
+         if(b.left==null&&b.right==null)
+         {
+           System.out.print(a.data+" ");
+           return;
+         }
+         printMid(a.left,b.left.left);
+         printMid(a.right,b.right.right);
+        
+    }
+	public static void main (String[] args) {
+		Print_Middle_Level_PerfectBT tree=new Print_Middle_Level_PerfectBT();
+		tree.root=new Node(1);
+		tree.root.left=new Node(2);
+		tree.root.right=new Node(3);
+		tree.root.left.left=new Node(4);
+		tree.root.left.right=new Node(5);
+		tree.root.right.left=new Node(6);
+		tree.root.right.right=new Node(7);
+		tree.printMid(tree.root,tree.root);
+	}
+}
